@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<!-- from https://material.angularjs.org/latest/demo/input -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Input from Material Angular</title>
+  <script type="text/javascript" src="node_modules\angular\angular.min.js"></script>
+  <script type="text/javascript">
+    angular
+      .module('app', [])
+      .controller('MyController', function ($scope) {
+        $rootScope.user = {
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+        };
+      });
+    angular.module('app', [])
+      .controller('button',
+        function () {
+          const self = this
+          self.userData = $rootScope.user
+          return { userInfo }
+        })
+  </script>
+</head>
+
+<body>
+  <div ng-controller="MyController" layout="column" layout-padding ng-cloak>
+    <br />
+    <!-- Use floating label instead of placeholder -->
+    <label>Name</label>
+    <input ng-model="user.name" type="text" placeholder="Full name">
+    <br />
+    <label>Phone</label>
+    <input ng-model="user.phone" type="text" placeholder="(xx) xxxx-xxxx" aria-label="Phone Number">
+    <br />
+    <label>Email</label>
+    <input ng-model="user.email" type="email" placeholder="example@email.com" ng-required="true"
+      aria-label="Email (required)">
+    <br />
+    <label>Address</label>
+    <input ng-model="user.address" type="text" placeholder="Street / Number / CEP" aria-label="Address">
+
+  </div>
+  <div ng-controller="MyController">
+    <button ng-click="button as btnSend">Send</button>
+    <h2>{{btnSend.userInfo }}</h2>
+  </div>
+</body>
+
+</html>
