@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular.js</title>
+  <script src="node_modules/angular/angular.min.js"> </script>
+
+  <script>
+    angular.module('app', []);
+    angular.module('app', []).filter('upper', function () {
+      return function (input) {
+        return input.toUpperCase()
+      }
+    })
+    angular.module('app').controller('meuControler', [
+      '$scope',
+      '$rootScope',
+      function ($scope, $rootScope) {
+        $scope.valor = 10,
+
+          /* VARIAVEIS E FUNCOES QUE PERTECE O meuControler */
+
+          $scope.valor = "texto"
+      }
+
+      /* VARIAVEIS GLOBAL PARA TODOS OS CONTROLLERS */
+      //$rootScope.variavel = 1000;
+    ])
+
+      .component('time', {
+        bindings: {
+          id: '@',
+          label: '@',
+          model: '@'
+        },
+        template: `
+             <label for= "{{ $ctrl.id }}" > "{{crtl.label}}" </label>
+             <input id="{{$ctrl.id}}" ng.model = '$crtl.model'>
+        
+        `
+      })
+
+      .controller('meuControler2', [
+        '$scope',
+        function ($scope) {
+          $scope.valor = 11;
+
+          //$scope.variavel = 1001;
+        }
+      ])
+
+      .controller('meuControler3', [
+        '$scope',
+        function ($scope) {
+
+        }
+
+      ])
+      .directive('myClock', function () {
+        return {
+          restrict: 'AE',
+          template: `<h2>${new Date}</h2>`
+        }
+      })
+  </script>
+</head>
+
+<body>
+  {{ 1 + 1}}
+  <input ng-model="value">
+  <h1>{{value}}</h1>
+  <div ng-controller="meuControler">
+    <input ng-model="valor">
+    <h1>{{valor | upper }}</h1>
+    {{variavel}}
+  </div>
+  <div ng-controller="meuControler2">
+    <h1>{{valor}}</h1>
+    {{variavel}}
+  </div>
+  <div my-clock></div>
+
+</body>
+
+</html>

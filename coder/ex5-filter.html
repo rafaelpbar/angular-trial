@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Filter</title>
+  <script type="text/javascript" src="node_modules\angular\angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('app', [])
+    angular.module('app')
+      .factory('utils', function () { // factory sempre retorna um objeto
+        function upper(input) {
+          return input.toUpperCase()
+        }
+        return { upper }
+      })
+    // é necessário iniciar outro módulo do angular
+    angular.module('app')
+      .controller('MeuController', [
+        'utils',
+        function (utils) {
+          const self = this // usar self por boas práticas
+          self.randomText = utils.upper("Meu texto em capsLock")
+        }
+      ])
+  </script>
+</head>
+
+<body>
+  <div ng-controller="MeuController as ctrl">
+    <h1>{{ ctrl.randomText }}</h1>
+  </div>
+</body>
+
+</html>
